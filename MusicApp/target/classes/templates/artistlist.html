@@ -8,6 +8,13 @@
 </head>
 <body>
 	<h1>Artistit</h1>
+	<nav class="navbar navbar-light bg-light">
+		<span>
+			<a href="/addartist" class="btn btn-success">Lisää Artisti</a>
+			<a class="btn btn-primary" th:href="@{/albumlist}">Albumit</a>
+			<a class="btn btn-primary" th:href="@{/genrelist}">Genret</a>
+		</span>
+	</nav>
 	
 	<table class="table table-striped">
 		<tbody>
@@ -24,7 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<td><a class="btn btn-primary" th:href="@{/albumlist}">Albumit</a></td>
 
 	
 </body>

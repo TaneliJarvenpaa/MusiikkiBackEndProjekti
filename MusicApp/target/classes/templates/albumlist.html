@@ -8,7 +8,13 @@
 </head>
 <body>
 	<h1>Albumi Lista</h1>
-	
+	<nav class="navbar navbar-light bg-light">
+		<span>
+			<a href="/addalbum" class="btn btn-success">Lisää Albumi</a>
+			<td><a class="btn btn-primary"th:href="@{/artistlist}">Artistit</a></td>
+			<td><a class="btn btn-primary"th:href="@{/genrelist}">Genret</a></td>
+		</span>
+	</nav>
 	<table class="table table-striped">
 		<tbody>
 			<tr>
@@ -23,9 +29,10 @@
 				<td th:text="${album.vuosi}"></td>
 				<td th:text="${album.artisti}"></td>
 				<td th:text="${album.genre}"></td>
+				<td><a th:href="@{/delete/{id}(id=${album.id})}" class="btn btn-danger">Poista</a></td>
 			</tr>
 		</tbody>
 	</table>
-	<td><a class="btn btn-primary"th:href="@{/artistlist}">Artistit</a></td>
+	
 </body>
 </html>

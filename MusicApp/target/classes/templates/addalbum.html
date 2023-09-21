@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lisää Albumi</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    
+</head>
+<body>
+	<h1>Lisää uusi Albumi</h1>
+	<div>
+		<form th:object="${album}" th:action="@{save}" action="#" method="post">
+		  	<label for="nimi">Nimi</label>
+			<input type="text" id="nimi" th:field="*{nimi}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="vuosi">vuosi</label>
+			<input type="text" id="vuosi" th:field="*{vuosi}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="artisti">artisti</label>
+			<input type="text" th:field="*{artisti}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<label for="genre">genre</label>
+			<input type="text" th:field="*{genre}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+			<div style="clear: both; display: block; height: 20px;"></div>
+			<input type="submit" value="Tallenna albumi"></input>
+			<td><a th:href="@{/albumlist}" class="btn btn-danger">Peruuta</a></td>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Genre Lista</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Genre Lista</h1>
+	
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Musiikki Genre</th>
+				<th> </th>
+			</tr>
+			<tr th:each = "genre : ${genres}">
+				<td th:text="${genre.nimi}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<td><a class="btn btn-primary"th:href="@{/artistlist}">Artistit</a></td>
+	<td></td>
+	<td><a class="btn btn-primary"th:href="@{/albumlist}">Albumit</a></td>
+</body>
+</html>
