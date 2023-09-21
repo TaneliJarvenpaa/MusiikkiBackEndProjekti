@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artisti Lista</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+    
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+	<h1>Artistit</h1>
+	
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<th>Nimi</th>
+				<th>Ikä</th>
+				<th>Kotimaa</th>
+				<th> </th>
+			</tr>
+			<tr th:each = "artist : ${artists}">
+				<td th:text="${artist.etunimi+' ' +artist.sukunimi}"></td>
+				<td th:text="${artist.ika}"></td>
+				<td th:text="${artist.kotimaa}"></td>
+			</tr>
+		</tbody>
+	</table>
+	<td><a class="btn btn-primary" th:href="@{/albumlist}">Albumit</a></td>
+
+	
+</body>
+</html>
