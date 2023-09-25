@@ -6,28 +6,33 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
     
 </head>
-<body>
+<body style="background-color: #82692c; color: black;">
+
 	<h1>Lisää uusi Artisti</h1>
 	<div>
 		<form th:object="${artist}" th:action="@{saveartist}" action="#" method="post">
 		  	<label for="etunimi">Etunimi</label>
 			<input type="text" id="etunimi" th:field="*{etunimi}" />
+			<span th:if="${#fields.hasErrors('etunimi')}" th:errors="*{etunimi}">Error</span>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 		  	<label for="sukunimi">Sukunimi</label>
 			<input type="text" id="sukunimi" th:field="*{sukunimi}" />
+			<span th:if="${#fields.hasErrors('sukunimi')}" th:errors="*{sukunimi}" class="error">Error</span>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 		  	<label for="ika">Ikä</label>
 			<input type="text" th:field="*{ika}" />
+			<span th:if="${#fields.hasErrors('ika')}" th:errors="*{ika}">Error</span>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 			<label for="kotimaa">Kotimaa</label>
 			<input type="text" th:field="*{kotimaa}" />
+			<span th:if="${#fields.hasErrors('kotimaa')}" th:errors="*{kotimaa}">Error</span>
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
 			<div style="clear: both; display: block; height: 20px;"></div>
-			<input type="submit" value="Tallenna Artisti"></input>
+			<input type="submit" value="Tallenna Artisti" ></input>
 			<td><a th:href="@{/artistlist}" class="btn btn-danger">Peruuta</a></td>
 		</form>
 	</div>

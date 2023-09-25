@@ -6,7 +6,7 @@
     
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<body style="background-color: #82692c; color: black;">
 	<h1>Albumi Lista</h1>
 	<nav class="navbar navbar-light bg-light">
 		<span>
@@ -15,7 +15,7 @@
 			<td><a class="btn btn-primary"th:href="@{/genrelist}">Genret</a></td>
 		</span>
 	</nav>
-	<table class="table table-striped">
+	<table class="table table-striped table-bordered">
 		<tbody>
 			<tr>
 				<th>Nimi</th>
@@ -27,9 +27,10 @@
 			<tr th:each = "album : ${albums}">
 				<td th:text="${album.nimi}"></td>
 				<td th:text="${album.vuosi}"></td>
-				<td th:text="${album.artisti}"></td>
+				<td th:text="${album.artist}"></td>
 				<td th:text="${album.genre}"></td>
 				<td><a th:href="@{/delete/{id}(id=${album.id})}" class="btn btn-danger">Poista</a></td>
+				<td><a th:href="@{/editalbum/{id}(id=${album.id})}" class="btn btn-info">Muokkaa</a></td>
 			</tr>
 		</tbody>
 	</table>

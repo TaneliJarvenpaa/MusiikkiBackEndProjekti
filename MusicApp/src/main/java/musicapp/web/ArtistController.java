@@ -1,5 +1,8 @@
 package musicapp.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,10 +35,17 @@ public class ArtistController {
 	};
 	
 	@GetMapping("artistlist/delete/{id}")
-	public String deleteArtist(@PathVariable("id") Long id) {
-		artistrep.deleteById(id);
-		return "redirect:../artistlist";
+	public String deleteArtist(@PathVariable("id") Long id, Model model) {
+	    Optional<Album> albums = albumrep.findById(id);
+	    if (!albums.isEmpty()) {
+	        model.addAttribute("error", "Cannot delete artist with associated albums.");
+	        model.addAttribute("artists", artistrep.findAll());
+	        return "artistlist";
+	    }
+	    artistrep.deleteById(id);
+	    return "/artistlist";
 	}
+
 	@GetMapping("/addartist")
 	public String addArtist(Model model) {
 		model.addAttribute("artist",new Artist());
@@ -44,7 +54,7 @@ public class ArtistController {
 	@PostMapping("/saveartist")
 	public String saveArtist(@Valid @ModelAttribute("artist") Artist artist,BindingResult br) {
 		if(br.hasErrors()) {
-			return "artistlist";
+			return "addartist";
 		}
 		artistrep.save(artist);
 		return "redirect:artistlist";

@@ -36,15 +36,9 @@ public class MusicAppApplication {
 			artrep.save(artist3);
 			artrep.save(artist4);
 			
-			Album album1=new Album("Hail to the king",2013,"Avenged sevenfold","Rock");
-			Album album2=new Album("Astronaut in the ocean",2021,"Our last Night ","Metalcore");
-			Album album3=new Album("Trauma",2019,"I Prevail","Metalcore");
-			Album album4=new Album("Watch The World Burn",2023,"Falling in Reverse","Metalcore");
 			
-			albumrep.save(album1);
-			albumrep.save(album2);
-			albumrep.save(album3);
-			albumrep.save(album4);
+			
+			
 			
 			Genre genre1=new Genre("Rock");
 			Genre genre2=new Genre("Metal");
@@ -55,6 +49,16 @@ public class MusicAppApplication {
 			genrerep.save(genre2);
 			genrerep.save(genre3);
 			genrerep.save(genre4);
+			
+			Album album1=new Album("Hail to the king",2013,artist1,genre1);
+			Album album2=new Album("Astronaut in the ocean",2021,artist2,genre2);
+			Album album3=new Album("Trauma",2019,artist3,genre3);
+			Album album4=new Album("Watch The World Burn",2023,artist3,genre4);
+			
+			albumrep.save(album1);
+			albumrep.save(album2);
+			albumrep.save(album3);
+			albumrep.save(album4);
 			
 			log.info("Tallennettiin albumeita, genrejä ja artisteja");
 			
