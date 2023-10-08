@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Artisti Lista</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .navbar-right {
+            margin-left: auto;
+        }
+        .user-info {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <a class="btn btn-primary" th:href="@{/albumlist}">Albumit</a>
+    <a class="btn btn-success" href="/addartist">Lisää Artisti</a>
+    <a class="btn btn-primary" th:href="@{/genrelist}">Genret</a>
+
+    <div class="navbar-right">
+        <span class="user-info">Käyttäjä: <span sec:authentication="name"></span></span>
+        <form th:action="@{/logout}" method="post" class="form-inline">
+            <input type="submit" value="Sign Out" class="btn btn-warning"/>
+        </form>
+    </div>
+</nav>
+
+<h1>Artistit</h1>
+
+<table class="table table-striped table-bordered">
+    <tbody>
+        <tr>
+            <th>Nimi</th>
+            <th>Ikä</th>
+            <th>Kotimaa</th>
+            <th> </th>
+        </tr>
+        <tr th:each="artist : ${artists}">
+            <td th:text="${artist.etunimi + ' ' + artist.sukunimi}"></td>
+            <td th:text="${artist.ika}"></td>
+            <td th:text="${artist.kotimaa}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/delete/{id}(id=${artist.id})}" class="btn btn-danger">Poista Artisti</a>
+                <a th:href="@{/editartist/{id}(id=${artist.id})}" class="btn btn-info">Muokkaa Artistia</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

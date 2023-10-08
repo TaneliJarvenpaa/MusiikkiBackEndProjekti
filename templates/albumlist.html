@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+    <title>Albumi Lista</title>
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .navbar-right {
+            margin-left: auto;
+        }
+        .user-info {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body style="color: black;">
+
+<nav class="navbar navbar-light bg-light">
+    <a href="/addalbum" class="btn btn-success">Lisää Albumi</a>
+    <a class="btn btn-primary" th:href="@{/artistlist}">Artistit</a>
+    <a class="btn btn-primary" th:href="@{/genrelist}">Genret</a>
+
+    <div class="navbar-right">
+        <span class="user-info">Hello <span sec:authentication="name"></span>!</span>
+        <form th:action="@{/logout}" method="post" class="form-inline">
+            <input type="submit" value="Sign Out" class="btn btn-warning"/>
+        </form>
+    </div>
+</nav>
+
+<h1>Albumi Lista</h1>
+
+<table class="table table-bordered table-striped">
+    <tbody>
+        <tr>
+            <th>Albumin Nimi</th>
+            <th>Julkaisuvuosi</th>
+            <th>Artisti</th>
+            <th>Kotimaa</th>
+            <th>Artistin Ikä</th>
+            <th>Genre</th>
+            <th> </th>
+            <th> </th>
+        </tr>
+        <tr th:each="album : ${albums}">
+            <td th:text="${album.nimi}"></td>
+            <td th:text="${album.vuosi}"></td>
+            <td th:text="${album.artist.etunimi} + ' ' + ${album.artist.sukunimi}"></td>
+            <td th:text="${album.artist.kotimaa}"></td>
+            <td th:text="${album.artist.ika}"></td>
+            <td th:text="${album.genre.nimi}"></td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/delete/{id}(id=${album.id})}" class="btn btn-danger">Poista</a>
+            </td>
+            <td sec:authorize="hasAuthority('ADMIN')">
+                <a th:href="@{/editalbum/{id}(id=${album.id})}" class="btn btn-info">Muokkaa</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

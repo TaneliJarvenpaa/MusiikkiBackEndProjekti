@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lisää Artisti</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    
+</head>
+<body class="bg-light">
+<div class="container mt-4">
+	<h1>Muokkaa Artistia</h1>
+	
+	<form th:object="${artist}" th:action="@{/saveartist}" action="#" method="post" class="bg-white p-4 rounded shadow">
+			<label for="id"></label>
+			<input type="hidden" id="id" th:field="*{id}" />
+			
+			<div class="mb-3">
+            <label for="etunimi" class="form-label">Etunimi</label>
+            <input type="text" id="etunimi" th:field="*{etunimi}" class="form-control" />
+            <small th:if="${#fields.hasErrors('etunimi')}" th:errors="*{etunimi}" class="text-danger">Error</small>
+            </div>
+			
+            <div class="mb-3">
+		  	<label for="sukunimi">Sukunimi</label>
+			<input type="text" id="sukunimi" th:field="*{sukunimi}" class="form-control"/>
+			<small th:if="${#fields.hasErrors('sukunimi')}" th:errors="*{sukunimi}" class="text-danger">Error</small>
+			</div>
+			
+			<div class="mb-3">
+		  	<label for="ika">Ikä</label>
+			<input type="text" id="ika" th:field="*{ika}" class="form-control"/>
+			<small th:if="${#fields.hasErrors('ika')}" th:errors="*{ika}" class="text-danger">Error</small>
+			</div>
+			
+			<div class="mb-3">
+		  	<label for="kotimaa">kotimaa</label>
+			<input type="text" id="kotimaa" th:field="*{kotimaa}" class="form-control"/>
+			<small th:if="${#fields.hasErrors('kotimaa')}" th:errors="*{kotimaa}" class="text-danger">Error</small>
+			</div>
+			
+			<div class="mb-3">
+            <button type="submit" class="btn btn-primary">Tallenna Artisti</button>
+            <a th:href="@{/artistlist}" class="btn btn-danger">Peruuta</a>
+            </div>
+		</form>
+	</div>
+</body>
+</html>

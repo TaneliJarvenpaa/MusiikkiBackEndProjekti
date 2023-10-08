@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Genre Lista</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <style>
+        .navbar-right {
+            margin-left: auto;
+        }
+        .user-info {
+            margin-right: 20px;
+        }
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-light bg-light">
+    <a class="btn btn-primary" th:href="@{/albumlist}">Albumit</a>
+    <a class="btn btn-primary" th:href="@{/artistlist}">Artistit</a>
+    <a href="/genrelist" class="btn btn-success">Genret</a>
+    
+    <div class="navbar-right">
+        <span class="user-info">Käyttäjä: <span sec:authentication="name"></span></span>
+        <form th:action="@{/logout}" method="post" class="form-inline">
+            <input type="submit" value="Sign Out" class="btn btn-warning"/>
+        </form>
+    </div>
+</nav>
+
+<h1>Genre Lista</h1>
+
+<div class="genre-list-box">
+    <table class="table table-striped table-bordered">
+        <tbody>
+            <tr th:each="genre : ${genres}">
+                <td th:text="${genre.nimi}"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
+
